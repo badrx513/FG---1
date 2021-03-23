@@ -1,4 +1,5 @@
-const { Client, Util, MessageEmbed, Discord, } = require('discord.js')
+const { Client, Util, MessageEmbed, } = require('discord.js')
+const Discord = require('discord.js')
 const ytdl = require('ytdl-core')
 const Youtube = require('simple-youtube-api')
 const { Video } = require('simple-youtube-api')
@@ -96,8 +97,9 @@ client.on('message', async message => {
     const nP = new Discord.MessageEmbed()
 	.setTitle(`Current Song is: [${title}](${url})`)
 	.setDescription('The Current Time is: (Time)')
-
-message.send(nP);
+    .setThumbnail('https://i.imgur.com/wSTFkRM.png')
+    .setTimestamp()
+ message.channel.send(nP)
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
