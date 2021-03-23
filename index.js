@@ -100,14 +100,11 @@ client.on('message', async message => {
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
-      .addField(
-        { name: `Requested by: ${message.author}` }
-      )
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
       .setTimestamp()
-    if (sonG.duration > 0) {
-      nowPlaying.addField(
+      .addField(
+        { name: `Requested by: ${message.author}` },
         "\u200b",
         new Date(seek * 1000).toISOString().substr(11, 8) +
           "[" +
@@ -115,9 +112,9 @@ client.on('message', async message => {
           "]" +
           (sonG.duration == 0 ? " ◉ LIVE" : new Date(sonG.duration * 1000).toISOString().substr(11, 8)),
         false
-      );
-      nowPlaying.setFooter("Time Remaining: " + new Date(left * 1000).toISOString().substr(11, 8))
-    }
+      )
+      .setFooter("Time Remaining: " + new Date(left * 1000).toISOString().substr(11, 8))
+    
     return message.channel.send(nowPlaying)
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
