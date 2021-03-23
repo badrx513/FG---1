@@ -99,7 +99,6 @@ client.on('message', async message => {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
     const sonG = serverQueue.songs[0]
-    const duratioN = song.duration
     const d = serverQueue.connection.dispatcher.streamTime / 1000
     var h = Math.floor(d / 3600)
     var m = Math.floor(d % 3600 / 60)
@@ -113,7 +112,7 @@ client.on('message', async message => {
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
       .addFields(
-        { name: "Time: ", value: `${hD}:${mD}:${sD} / ${duratioN}`},
+        { name: "Time: ", value: `${hD}:${mD}:${sD} / full Time`},
       )
       .setFooter(`Requested by: ${message.author.username}`)
       .setTimestamp()
