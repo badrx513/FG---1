@@ -155,7 +155,6 @@ async function handleVideo(video, message, voiceChannel, playList = false) {
         id: video.id,
         title: Util.escapeMarkdown(video.title),
         url: `https://www.youtube.com/watch?v=${video.id}`,
-        duration: video.duration,
     }
 
     if(!serverQueue) {
