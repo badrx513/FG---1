@@ -97,7 +97,7 @@ client.on('message', async message => {
     if(!serverQueue) return message.channel.send('There is no music playing')
     const sonG = serverQueue.songs[0]
     const d = serverQueue.connection.dispatcher.streamTime / 1000
-    const t = serverQueue.connection.dispatcher.streamDuration
+    const t = serverQueue.connection.dispatcher.streamDuration / 1000
     var h = Math.floor(d / 3600)
     var m = Math.floor(d % 3600 / 60)
     var s = Math.floor(d % 3600 % 60)
@@ -106,7 +106,7 @@ client.on('message', async message => {
     var sD = s > 0 ? s + (s == 1) : ""
     const hms = `${hD}:${mD}:${sD}`
     const ms = `${mD}:${sD}`
-    if (t => 3600000) {
+    if (t => 3600) {
         let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
@@ -117,8 +117,8 @@ client.on('message', async message => {
       )
       .setFooter(`Requested by: ${message.author.username}`)
       .setTimestamp()
-    return message.channel.send(nowPlaying)
-    } else if (t <= 3599999) {
+      return message.channel.send(nowPlaying)
+    } else if (t <= 3599) {
         let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
@@ -129,7 +129,19 @@ client.on('message', async message => {
       )
       .setFooter(`Requested by: ${message.author.username}`)
       .setTimestamp()
-    return message.channel.send(nowPlaying)
+      return message.channel.send(nowPlaying)
+    } else {
+        let nowPlaying = new MessageEmbed()
+        .setTitle("Now playing")
+        .setDescription(`[${sonG.title}](${sonG.url})`)
+        .setColor("#F8AA2A")
+        .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
+        .addFields(
+          { name: "Time: ", value: `${mD}:${sD} / full Time`},
+        )
+        .setFooter(`Requested by: ${message.author.username}`)
+        .setTimestamp()
+        return message.channel.send(nowPlaying)
     }
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
