@@ -21,7 +21,7 @@ client.on('message', async message => {
  const serverQueue = queue.get(message.guild.id)
 
  // ---------------------------------------------------------------------------------------------------- Public Commands
- if (message.channel.startsWith(Prefix + 'MuteAll')) {
+ if (message.content.startsWith(Prefix + 'MuteAll')) {
     let channel = message.member.voiceChannel;
     for (let member of channel.members) {
         member[1].setMute(true)
