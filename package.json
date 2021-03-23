@@ -8,5 +8,25 @@
     "simple-youtube-api": "^5.2.1",
     "string-progressbar": "^1.0.1",
     "ytdl-core": "^4.4.2"
-  }
+  },
+  "name": "fg---1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KasPeeer/FG---1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KasPeeer/FG---1/issues"
+  },
+  "homepage": "https://github.com/KasPeeer/FG---1#readme",
+  "description": ""
 }

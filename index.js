@@ -3,12 +3,12 @@ const ytdl = require('ytdl-core')
 const Youtube = require('simple-youtube-api')
 const { Video } = require('simple-youtube-api')
 const createBar = require("string-progressbar")
-const Prefix = '-'
+const Prefix = process.env.prefix
 const { Utils } = require("erela.js")
 const { stripIndents } = require("common-tags")
 
 const client = new Client({ disableEveryone: true})
-const youtube = new Youtube("AIzaSyAoD6bU8ywJfxTCjcnkZHuyjNaj5EKwMNs")
+const youtube = new Youtube(process.env.youtubeApi)
 const queue = new Map()
 
 client.on('ready', () => console.log('Active'))
@@ -208,4 +208,4 @@ function play(guild, song) {
     
   }
 
-client.login("ODIzNjg5MDg2NTQ3MjYzNTA5.YFkePQ.g0vX9usxyqG-t_vWL0IyfIw3Wqk")
+client.login(process.env.TOKEN)
