@@ -25,13 +25,6 @@ client.on('message', async message => {
     message.channel.send('check DM')
     message.author.send('This is a music bot it\'s now in its working stage')
  }
- if(message.content.startsWith(Prefix + `hel`)) {
-    message.reply('Invalid Command')
-    .then(message => {
-        message.delete({ timeout: 5000 })
-    })
-    .catch(console.error);
- }
  if(message.content.startsWith(Prefix + ".")) {
     message.reply('وش تبي تنقط فاضين لك')
     message.react('💙') }
