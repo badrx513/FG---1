@@ -170,7 +170,7 @@ async function handleVideo(video, message, voiceChannel, playList = false) {
 
      try {
         var connection = await voiceChannel.join()
-        if (!client.voiceChannel) (message.channel.send(`**👍Joined ***${voiceChannel}*** and bound to** ${message.channel}`))
+        if (!client.voiceChannel) (message.channel.send(`**👍Joined** ${voiceChannel} **and bound to** ${message.channel}`))
         queueConstruct.connection = connection
         play(message.guild, queueConstruct.songs[0])
      } catch (error) {
@@ -205,7 +205,7 @@ function play(guild, song) {
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 100)
 
     if(!serverQueue.loop) {
-        serverQueue.textChannel.send(`**Playing🎶** ***${song.title}*** - Now`) 
+        serverQueue.textChannel.send(`Playing🎶 **${song.title}**`) 
         .then(message => {
             message.delete({ timeout: 5000 })
         })
