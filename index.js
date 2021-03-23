@@ -92,6 +92,9 @@ client.on('message', async message => {
     message.channel.send(`I have changed the volume to ${args[1]}`)
     return undefined
  } else if(message.content.startsWith(Prefix + `np`)) {
+    const id = video.id
+    const title = Util.escapeMarkdown(video.title)
+    const url = `https://www.youtube.com/watch?v=${video.id}`
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
     const nP = new Discord.MessageEmbed()
