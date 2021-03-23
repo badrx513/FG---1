@@ -198,7 +198,7 @@ function play(guild, song) {
         return
     }
 
-    if(client.leave.voiceChannel){
+    if(!client.voiceChannel){
         queue.delete(guild.id)
         return
     }
