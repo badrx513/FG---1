@@ -83,7 +83,7 @@ client.on('message', async message => {
  } else if(message.content.startsWith(Prefix + `v`, `volume`)) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
-    if(!args[1]) return message.channel.send(`That volume is: **${serverQueue.volume}**`)
+    if(!args[1]) return message.channel.send(`The volume is: **${serverQueue.volume}%**`)
     if(isNaN(args[1])) return message.channel.send('This is not a valid amount to change the volume to')
     if(args[1] > 100) return message.channel.send('The number is above the max limit')
     serverQueue.volume = args[1]
@@ -149,7 +149,7 @@ async function handleVideo(video, message, voiceChannel, playList = false) {
             voiceChannel: voiceChannel,
             connection: null,
             songs: [],
-            volume: 50,
+            volume: 100,
             playing: true
         }
         queue.set(message.guild.id, queueConstruct)
@@ -158,7 +158,7 @@ async function handleVideo(video, message, voiceChannel, playList = false) {
 
      try {
         var connection = await voiceChannel.join()
-        if (!client.voiceChannel) (!message.channel.send(`Joined ${voiceChannel} and bound to ${message.channel}`))
+        if (!client.voiceChannel) (message.channel.send(`Joined ${voiceChannel} and bound to ${message.channel}`))
         queueConstruct.connection = connection
         play(message.guild, queueConstruct.songs[0])
      } catch (error) {
@@ -195,7 +195,7 @@ function play(guild, song) {
     if(!serverQueue.loop) {
         serverQueue.textChannel.send(`Started Playing: **${song.title}** `) 
         .then(message => {
-            message.delete({ timeout: 90000 })
+            message.delete({ timeout: 5000 })
         })
         .catch(console.error)
     }
