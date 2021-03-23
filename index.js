@@ -91,9 +91,11 @@ client.on('message', async message => {
     message.channel.send(`I have changed the volume to ${args[1]}`)
     return undefined
  } else if(message.content.startsWith(Prefix + `np`)) {
+    if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
+    if(!serverQueue) return message.channel.send('There is no music playing')
     const nP = new Discord.MessageEmbed()
 	.setTitle(`Current Song is: [${title}](${url})`)
-	.setDescription('The Current Time is: (Time)');
+	.setDescription('The Current Time is: (Time)')
 
 message.send(nP);
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
