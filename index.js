@@ -99,9 +99,9 @@ client.on('message', async message => {
     var h = Math.floor(d / 3600)
     var m = Math.floor(d % 3600 / 60)
     var s = Math.floor(d % 3600 % 60)
-    var hD = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : ""
-    var mD = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : ""
-    var sD = s > 0 ? s + (s == 1 ? " second" : " seconds") : ""
+    var hD = h > 0 ? h + (h == 1) : ""
+    var mD = m > 0 ? m + (m == 1) : ""
+    var sD = s > 0 ? s + (s == 1) : ""
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
