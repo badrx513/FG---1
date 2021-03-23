@@ -1,5 +1,4 @@
-const { Client, Util, MessageEmbed, } = require('discord.js')
-const Discord = require('discord.js')
+const { Client, Util, MessageEmbed, Discord, } = require('discord.js')
 const ytdl = require('ytdl-core')
 const Youtube = require('simple-youtube-api')
 const { Video } = require('simple-youtube-api')
@@ -92,17 +91,30 @@ client.on('message', async message => {
     message.channel.send(`I have changed the volume to ${args[1]}`)
     return undefined
  } else if(message.content.startsWith(Prefix + `np`)) {
-    const iD = video.id
-    const tiTle = Util.escapeMarkdown(video.title)
-    const uRl = `https://www.youtube.com/watch?v=${iD}`
+    const queue = message.client.queue.get(message.guild.id)
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
-    const nP = new Discord.MessageEmbed()
-	.setTitle(`Current Song is: [${tiTle}](${uRl})`)
-	.setDescription('The Current Time is: (Time)')
-    .setThumbnail('https://i.imgur.com/wSTFkRM.png')
-    .setTimestamp()
- message.channel.send(nP)
+    const song = serverQueue.songs[0]
+    const seek = (serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000
+    const left = song.duration - seek
+    let nowPlaying = new MessageEmbed()
+      .setTitle("Now playing")
+      .setDescription(`${song.title}\n${song.url}`)
+      .setColor("#F8AA2A")
+      .setAuthor(message.client.user.username)
+    if (song.duration > 0) {
+      nowPlaying.addField(
+        "\u200b",
+        new Date(seek * 1000).toISOString().substr(11, 8) +
+          "[" +
+          createBar(song.duration == 0 ? seek : song.duration, seek, 20)[0] +
+          "]" +
+          (song.duration == 0 ? " ◉ LIVE" : new Date(song.duration * 1000).toISOString().substr(11, 8)),
+        false
+      );
+      nowPlaying.setFooter("Time Remaining: " + new Date(left * 1000).toISOString().substr(11, 8))
+    }
+    return message.channel.send(nowPlaying)
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
