@@ -102,7 +102,7 @@ client.on('message', async message => {
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
       .addFields(
-        { name: "Time: ", value: tiMe},
+        { name: "Time: ", value: `${hD}:${mD}:${sD}`},
       )
       .setFooter(`Requested by: ${message.author.username}`)
       .setTimestamp()
