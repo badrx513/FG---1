@@ -13,7 +13,7 @@ const queue = new Map()
 
 client.on('ready', () => {
 console.log('bot is Active')
-client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "PLAYING" })
+client.user.setActivity(`${Prefix}help and ${Prefix}play`, { type: "PLAYING" })
 client.user.setStatus('dnd')
 })
 client.on('message', async message => {
