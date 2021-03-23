@@ -21,12 +21,6 @@ client.on('message', async message => {
  const serverQueue = queue.get(message.guild.id)
 
  // ---------------------------------------------------------------------------------------------------- Public Commands
- if (message.content.startsWith(Prefix + 'MuteAll')) {
-    let channel = message.author.voiceChannel;
-    for (let member of channel.members) {
-        member[1].setMute(true)
-    }
- }
  if(message.content.startsWith(Prefix + `help`)) {
     message.channel.send('check DM')
     message.author.send('This is a music bot it\'s now in its working stage')
