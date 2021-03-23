@@ -100,8 +100,12 @@ client.on('message', async message => {
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
+      .addField(
+        { name: `Requested by: ${message.author}` }
+      )
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
+      .setTimestamp()
     if (sonG.duration > 0) {
       nowPlaying.addField(
         "\u200b",
