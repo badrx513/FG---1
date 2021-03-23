@@ -101,12 +101,11 @@ client.on('message', async message => {
       .setDescription(`[${sonG.title}](${sonG.url})`)
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
-      .setTimestamp()
-      .addField(
-        { name: `Requested by:  /n${message.author}`, value: ""},
+      .addFields(
+        { name: "Time Remaining: " + seek},
       )
-      .setFooter("Time Remaining: " + seek)
-    
+      .setFooter(`Requested by: ${message.author}`)
+      .setTimestamp()
     return message.channel.send(nowPlaying)
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
