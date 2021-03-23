@@ -103,7 +103,7 @@ client.on('message', async message => {
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
       .setTimestamp()
-      .addField(
+      .addFields(
         { name: `Requested by: ${message.author}` },
         "\u200b",
         new Date(seek * 1000).toISOString().substr(11, 8) +
