@@ -95,14 +95,14 @@ client.on('message', async message => {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
     const sonG = serverQueue.songs[0]
-    const seek = sonG.duration
+    const tiMe = queue.connection.dispatcher.streamTime;
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
       .addFields(
-        { name: "Time: ", value: seek},
+        { name: "Time: ", value: tiMe},
       )
       .setFooter(`Requested by: ${message.author.username}`)
       .setTimestamp()
