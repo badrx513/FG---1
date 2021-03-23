@@ -95,7 +95,7 @@ client.on('message', async message => {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
     const sonG = serverQueue.songs[0]
-    const tiMe = serverQueue.connection.dispatcher.streamTime;
+    const tiMe = serverQueue.connection.dispatcher.streamTime / 1000;
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
@@ -137,6 +137,17 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
  }
  // ---------------------------------------------------------------------------------------------------- music Commands
 })
+
+function secondsToHms(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    var hD = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+    var mD = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+    var sD = s > 0 ? s + (s == 1 ? " second" : " seconds") : ""; 
+}
 
 async function handleVideo(video, message, voiceChannel, playList = false) {
     const serverQueue = queue.get(message.guild.id)
@@ -183,6 +194,11 @@ function play(guild, song) {
     const serverQueue = queue.get(guild.id)
 
     if(!song){
+        queue.delete(songs)
+        return
+    }
+
+    if(client.leave.voiceChannel){
         queue.delete(guild.id)
         return
     }
