@@ -101,7 +101,7 @@ client.on('message', async message => {
       .setTitle("Now playing")
       .setDescription(`${song.title}\n${song.url}`)
       .setColor("#F8AA2A")
-      .setAuthor(message.client.user.username)
+      .setAuthor("Now Playing♪", 'https://rythm.fm/rythm.png')
     if (song.duration > 0) {
       nowPlaying.addField(
         "\u200b",
