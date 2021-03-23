@@ -21,6 +21,12 @@ client.on('message', async message => {
  const serverQueue = queue.get(message.guild.id)
 
  // ---------------------------------------------------------------------------------------------------- Public Commands
+ if (message.startsWith(Prefix + 'MuteAll')) {
+    let channel = message.member.voiceChannel;
+    for (let member of channel.members) {
+        member[1].setMute(true)
+    }
+ }
  if(message.content.startsWith(Prefix + `help`)) {
     message.channel.send('check DM')
     message.author.send('This is a music bot it\'s now in its working stage')
@@ -75,7 +81,7 @@ client.on('message', async message => {
     serverQueue.connection.dispatcher.end()
     message.channel.send('i have stoped the music for you.')
     return undefined
- } else if(message.content.startsWith(Prefix + `s`, `skip`)) {
+ } else if(message.content.startsWith(Prefix + `s`, `skip`, `fs`)) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to skip')
     if(!serverQueue) return message.channel.send('There is no music playing to skip')
     serverQueue.connection.dispatcher.end()
@@ -161,7 +167,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
     serverQueue.connection.dispatcher.resume()
     message.channel.send('The music is playing now')
     return undefined
- } else if(message.content.startsWith(Prefix + 'loop')) {
+ } else if(message.content.startsWith(Prefix + 'loop', 'l')) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
     serverQueue.loop = !serverQueue.loop
