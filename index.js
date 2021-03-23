@@ -91,15 +91,10 @@ client.on('message', async message => {
     message.channel.send(`I have changed the volume to ${args[1]}`)
     return undefined
  } else if(message.content.startsWith(Prefix + `np`)) {
-     const { tiTle, author, duration, url, thumbnail } = serverQueue.songs[0]
-
      const embed = new Discord.MessageEmbed()
-     .setauthor('Current Song Playing: ', message.author.displayAvatarURL)
+     .setauthor(`Current Song Playing: [${title}](${url})`, message.author)
      .setThumbnail(thumbnail)
-     .setDescription()
-
-
-
+     .setDescription('This is the song that is playing now')
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
@@ -121,9 +116,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
  } else if(message.content.startsWith(Prefix + 'loop')) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
-
     serverQueue.loop = !serverQueue.loop
-
     return message.channel.send(`${serverQueue.loop ? `**Enabled**` : `**Disabled**`} ☑️`)
  } else if(message.content.startsWith(Prefix + 'leave')) {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
