@@ -23,7 +23,7 @@ client.on('message', async message => {
  // ---------------------------------------------------------------------------------------------------- Public Commands
  if (message.content.startsWith(Prefix + 'MuteAll')) {
     let channel = message.member.voiceChannel;
-    for (let member of channel.member) {
+    for (let member of voiceChannel.members) {
         member[1].setMute(true)
     }
  }
