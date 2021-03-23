@@ -99,9 +99,9 @@ client.on('message', async message => {
     const left = song.duration - seek
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
-      .setDescription(`${song.title}\n${song.url}`)
+      .setDescription(`[${song.title}](${song.url})`)
       .setColor("#F8AA2A")
-      .setAuthor("Now Playing♪", 'https://rythm.fm/rythm.png')
+      .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
     if (song.duration > 0) {
       nowPlaying.addField(
         "\u200b",
