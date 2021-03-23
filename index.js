@@ -104,7 +104,7 @@ client.on('message', async message => {
       .addFields(
         { name: "Time Remaining: " + seek},
       )
-      .setFooter(`Requested by: ${message.author}`)
+      .setFooter(`Requested by: ${message.author.username}`)
       .setTimestamp()
     return message.channel.send(nowPlaying)
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
