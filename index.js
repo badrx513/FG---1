@@ -11,7 +11,11 @@ const client = new Client({ disableEveryone: true})
 const youtube = new Youtube(process.env.youtubeApi)
 const queue = new Map()
 
-client.on('ready', () => console.log('Active'))
+client.on('ready', () => {
+console.log('bot is Active')
+client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "PLAYING" })
+client.user.setStatus('dnd')
+})
 client.on('message', async message => {
  if(message.author.bot) return
  if(!message.content.startsWith(Prefix)) return
