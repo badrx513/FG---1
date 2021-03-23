@@ -95,7 +95,7 @@ client.on('message', async message => {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
     const sonG = serverQueue.songs[0]
-    const tiMe = queue.connection.dispatcher.streamTime;
+    const tiMe = serverQueue.connection.dispatcher.streamTime;
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
