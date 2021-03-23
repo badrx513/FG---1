@@ -100,13 +100,16 @@ client.on('message', async message => {
     var h = m / 60
     var m = d / 60
     var s = d
+    var hD = h > 0 ? h + (h == 1) : ""
+    var mD = m > 0 ? m + (m == 1) : ""
+    var sD = s > 0 ? s + (s == 1) : ""
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
       .addFields(
-        { name: "Time: ", value: `${m}:${s} / full Time`},
+        { name: "Time: ", value: `${mD}:${sD} / full Time`},
       )
       .setFooter(`Requested by: ${message.author.username}`)
       .setTimestamp()
