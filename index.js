@@ -158,9 +158,7 @@ async function handleVideo(video, message, voiceChannel, playList = false) {
 
      try {
         var connection = await voiceChannel.join()
-        if (!client.voiceChannel) {
-            (message.channel.send(`Joined ${voiceChannel} and bound to ${message.channel}`))
-        }
+        if (client.voiceChannel) (!message.channel.send(`Joined ${voiceChannel} and bound to ${message.channel}`))
         queueConstruct.connection = connection
         play(message.guild, queueConstruct.songs[0])
      } catch (error) {
