@@ -97,19 +97,16 @@ client.on('message', async message => {
     if(!serverQueue) return message.channel.send('There is no music playing')
     const sonG = serverQueue.songs[0]
     const d = serverQueue.connection.dispatcher.streamTime / 1000
-    var h = Math.floor(d / 3600)
-    var m = Math.floor(d % 3600 / 60)
-    var s = Math.floor(d % 3600 % 60)
-    var hD = h > 0 ? h + (h == 1) : ""
-    var mD = m > 0 ? m + (m == 1) : ""
-    var sD = s > 0 ? s + (s == 1) : ""
+    var h = m / 60
+    var m = d / 60
+    var s = d
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
       .addFields(
-        { name: "Time: ", value: `${hD}:${mD}:${sD} / full Time`},
+        { name: "Time: ", value: `${m}:${s} / full Time`},
       )
       .setFooter(`Requested by: ${message.author.username}`)
       .setTimestamp()
@@ -204,14 +201,7 @@ function play(guild, song) {
     })
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 100)
 
-    if(!serverQueue.loop) {
-        serverQueue.textChannel.send(`Playing🎶 **${song.title}**`) 
-        .then(message => {
-            message.delete({ timeout: 5000 })
-        })
-        .catch(console.error)
-    }
-    
-  }
+    if(!serverQueue.loop) serverQueue.textChannel.send(`Playing🎶 **${song.title}**`)
+}
 
 client.login(process.env.TOKEN)
