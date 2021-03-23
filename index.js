@@ -94,22 +94,22 @@ client.on('message', async message => {
     const serverQueue = queue.get(message.guild.id)
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
-    const song = serverQueue.songs[0]
+    const sonG = serverQueue.songs[0]
     const seek = (serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000
     const left = song.duration - seek
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
-      .setDescription(`[${song.title}](${song.url})`)
+      .setDescription(`[${sonG.title}](${sonG.url})`)
       .setColor("#F8AA2A")
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
-    if (song.duration > 0) {
+    if (sonG.duration > 0) {
       nowPlaying.addField(
         "\u200b",
         new Date(seek * 1000).toISOString().substr(11, 8) +
           "[" +
-          createBar(song.duration == 0 ? seek : song.duration, seek, 20)[0] +
+          createBar(sonG.duration == 0 ? seek : sonG.duration, seek, 20)[0] +
           "]" +
-          (song.duration == 0 ? " ◉ LIVE" : new Date(song.duration * 1000).toISOString().substr(11, 8)),
+          (sonG.duration == 0 ? " ◉ LIVE" : new Date(sonG.duration * 1000).toISOString().substr(11, 8)),
         false
       );
       nowPlaying.setFooter("Time Remaining: " + new Date(left * 1000).toISOString().substr(11, 8))
