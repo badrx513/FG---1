@@ -95,7 +95,7 @@ client.on('message', async message => {
     if(!message.member.voice.channel) return message.channel.send('You need to be in a voice channel to use this command')
     if(!serverQueue) return message.channel.send('There is no music playing')
     const sonG = serverQueue.songs[0]
-    const duratioN = sonG.duration
+    const duratioN = song.duration
     const d = serverQueue.connection.dispatcher.streamTime / 1000
     var h = Math.floor(d / 3600)
     var m = Math.floor(d % 3600 / 60)
