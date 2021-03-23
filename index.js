@@ -96,7 +96,6 @@ client.on('message', async message => {
     if(!serverQueue) return message.channel.send('There is no music playing')
     const sonG = serverQueue.songs[0]
     const seek = sonG.duration
-    const left = seek
     let nowPlaying = new MessageEmbed()
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
@@ -104,9 +103,9 @@ client.on('message', async message => {
       .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
       .setTimestamp()
       .addField(
-        { name: `Requested by: ${message.author}` },
+        { name: `Requested by:  /n${message.author}`, value: ""},
       )
-      .setFooter("Time Remaining: " + left)
+      .setFooter("Time Remaining: " + seek)
     
     return message.channel.send(nowPlaying)
  } else if(message.content.startsWith(Prefix + `q`, `queue`)) {
