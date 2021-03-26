@@ -124,7 +124,7 @@ client.on('message', async message => {
       .setTitle("Now playing")
       .setDescription(`[${sonG.title}](${sonG.url})`)
       .setColor("#F8AA2A")
-      .setAuthor("Now Playing ♪", 'https://rythm.fm/rythm.png')
+      .setAuthor("Now Playing ♪", 'https://cdn.discordapp.com/attachments/823984750560542740/825100210018713690/Fun_Land1.png')
       .addFields(
         { name: "Time: ", value: `${t} / Full Time`},
       )
