@@ -28,7 +28,7 @@ client.on('message', async message => {
  if(message.content.startsWith(Prefix + `help`)) {
     message.channel.send('check DM')
     let help = new MessageEmbed()
-      .setAuthor("This is a list of the commands", 'https://rythm.fm/rythm.png')
+      .setAuthor("This is a list of the commands", 'https://cdn.discordapp.com/avatars/787026280733474837/76966bb19ae07732586b48b9d81adeb8.png?size=128')
       .setTitle("Commands")
       .setColor("#F8AA2A")
       .addFields(
@@ -43,7 +43,7 @@ client.on('message', async message => {
           {name: '`leave`', value: 'use this command to make the bot leave the VC'},
           {name: '`loop`', value: 'use this command to make the current song loop'},
           {name: '`ql`', value: 'use this command to make all the list loop'},
-          {name: 'To invite the bot', value: `[Click here](https://discord.com/api/oauth2/authorize?client_id=823689086547263509&permissions=2214068032&scope=bot)`}
+          {name: 'To invite the bot', value: `[Click Here](https://discord.com/api/oauth2/authorize?client_id=787026280733474837&permissions=2214068032&scope=bot)`}
       )
       .setTimestamp()
       .setFooter(`${message.author.username}`)
