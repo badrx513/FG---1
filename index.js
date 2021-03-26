@@ -13,7 +13,7 @@ const STAY_TIME = process.env.StayTime
 client.on('ready', () => {
 console.log('bot is Active')
 client.user.setStatus('streaming')
-client.user.setActivity(`-help and -play`, { type: 'STREAMING' })
+client.user.setActivity(`!!help and !!play`, { type: 'STREAMING' })
 })
 client.on('message', async message => {
  if(!message.guild) return
